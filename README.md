@@ -147,6 +147,22 @@ This refactored method not only simplifies the code, but also decreases the amou
 
 ## Results
 
+### Stock Performance 2017 vs 2018
+Through this analysis, it can be concluded that most of the 12 stocks perormed much better in 2017 than in 2018, both in terms of Total Volume as well as Return. Moreover, in 2017 most stocks showed a positive return and in 2018 most showed a negative return. This invites a deeper exploration into the performance of the green power industry as a whole during this time and possible factors that could explain this trend. 
+
+![2017_Cropped](https://user-images.githubusercontent.com/99051640/164998740-5756e0c8-bc80-4425-a903-302b79ee9cb5.png)
+![2018_Cropped](https://user-images.githubusercontent.com/99051640/164998743-4a8fe64a-8e97-42ac-805c-3da3b4e75250.png)
+
+   There are also two stocks that stand out against this trend as having more consistent and/or positive performance. ENPH saw less of a return in 2018 than 2017, however it was still a fairly high return at 81.9%. It also increased in total volume. Other stocks managed to increase in total daily volume in 2018 but still had negative returns. RUN appears to have the strongest performance of all the stocks from 2017 to 2018. There was an increase in Total Daily Volume and a large jump in Return from 5.5% to almost 84%. 
+   The data is limited in that it only accounts for two years and further analsys of data for years after 2018 would be beneficial to substantiate any conclusions regarding which stocks would be good options to purchase. 
+
+### Execution times of the original vs refactored script
+![2017_Original_Code](https://user-images.githubusercontent.com/99051640/164998377-44efbd7f-3dee-4ba3-a3e9-f97fcf054d7f.png)
+![VBA_Challenge_2017](https://user-images.githubusercontent.com/99051640/164998383-94aa5ae9-22f0-4e35-8627-90713eeb375a.png)
+
+![2018_Original_Code](https://user-images.githubusercontent.com/99051640/164998379-dac9104f-7468-4da3-97d7-58e134c9d2ed.png)
+![VBA_Challenge_2018](https://user-images.githubusercontent.com/99051640/164998384-445427f4-2298-4b85-a1a3-d6fbd9788a3a.png)
+
 
 disadvantages in general: time consuming, create higher levels of complexity even when reducing the number of lines (introducing variables that are arrays, dictionaries, etc. May not be as easy to follow or adapt for other use. 
 
