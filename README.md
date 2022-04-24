@@ -36,21 +36,34 @@ In order to assign the correct values, the Tickers array is assigned to a variab
            
 Bcause the data is arranged chronologically and grouped by ticker, the Starting Price and Ending Price values for each ticker are located only in the first and last rows for that ticker. Two more conditional statments are added into the loop to get these values by checking if each row has the current ticker and then separately checking if the row before and the row after have a different ticker.
 
-    'Get starting price for current ticker
-    If Cells(j - 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then
+            'Get starting price for current ticker
+            If Cells(j - 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then
 
-       startingPrice = Cells(j, 6).Value
+                startingPrice = Cells(j, 6).Value
 
-       End If
+            End If
            
-    'Get ending price for current ticker
-    If Cells(j + 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then
+            'Get ending price for current ticker
+            If Cells(j + 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then
 
-       endingPrice = Cells(j, 6).Value
+                endingPrice = Cells(j, 6).Value
 
-       End If
+            End If
+       
+Lastly, the data is output for the current ticker to the new spreadsheet. This is done by closing the inner nested loop and setting the values within the outermost loop that iterates through the Tickers array. 
 
-### Solution 2 - Using multiple arrays
+       Next j
+       
+       'Output data for current ticker
+       Worksheets("All Stocks Analysis").Activate
+       Cells(4 + i, 1).Value = ticker
+       Cells(4 + i, 2).Value = totalVolume
+       Cells(4 + i, 3).Value = endingPrice / startingPrice - 1
+
+    Next i
+
+
+### Method 2 - Using multiple arrays
 
 In the refactored code, a Ticker Index is created to assign the correct values to each ticker rather than looping through all the rows in the data for every ticker in the Tickers array. In this method the variables for the output values are declared as arrays corresponding to the ticker index.
 
@@ -69,36 +82,60 @@ A single loop is used to iterate though all the rows in the data. First, to cumu
     
         tickerVolumes(i) = 0
         
+     Next i  
+     
     'Loop over all the rows in the spreadsheet
     For i = 2 To RowCount
     
         'Increase volume for current ticker
         tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value
         
-The loop then uses conditional statments to check if each row is either the first or the last row of the current Ticker before returning the Starting and Endidng Prices for that Ticker and increasing the index to the next one.
+The loop then uses conditional statments to check if each row is either the first or the last row of the current Ticker before returning the Starting and Ending Prices for that Ticker and increasing the index to the next one.
 
-    'Check if the current row is the first row with the selected tickerIndex
-    If Cells(i - 1, 1).Value <> tickers(tickerIndex) Then
+        'Check if the current row is the first row with the selected tickerIndex
+        If Cells(i - 1, 1).Value <> tickers(tickerIndex) Then
     
-       'Get the starting price for the current tickerIndex
-       tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
+            'Get the starting price for the current tickerIndex
+            tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
                 
-    End If
+        End If
         
-    'Check if the current row is the last row with the selected ticker
-    If Cells(i + 1, 1).Value <> tickers(tickerIndex) Then
+        'Check if the current row is the last row with the selected ticker
+        If Cells(i + 1, 1).Value <> tickers(tickerIndex) Then
     
-       'Get the ending pricer for the current tickerIndex
-       tickerEndingPrices(tickerIndex) = Cells(i, 6).Value
+            'Get the ending pricer for the current tickerIndex
+            tickerEndingPrices(tickerIndex) = Cells(i, 6).Value
     
+            'Increase the tickerIndex to the next ticker
+            tickerIndex = tickerIndex + 1
+
+        End If
+       
+    Next i
+    
+The last step is to output the values to the All Stocks Analysis sheet. In the refactored code, this is done with a final loop through the output arrays as opposed to setting the values within the original code's nested loop. 
+
+    'Loop through the arrays
+    For i = 0 To 11
+    
+        'Activate worksheet to output the values
+        Worksheets("All Stocks Analysis").Activate
         
-       'Increase the tickerIndex to the next ticker
-       tickerIndex = tickerIndex + 1
-            
-            
-    End If
+        'Output the Ticker
+        Cells(4 + i, 1).Value = tickers(i)
+        
+        'Output the Total Daily Volume
+        Cells(4 + i, 2).Value = tickerVolumes(i)
+        
+        'Output the Return
+        Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
     
 This refactored method not only simplifies the code, but also decreases the amount of time it takes to run. With an array of only 12 stocks and sheets containing around 3000 rows, this decrease in run time can still be seen significantly. The next section explores the differences in the refactored code and how this decrease in run time is important when analyzing much larger datasets. 
 
 ## Results
+
+
+disadvantages in general: time consuming, create higher levels of complexity even when reducing the number of lines (introducing variables that are arrays, dictionaries, etc. May not be as easy to follow or adapt for other use. 
+
+specifically: Variables are arrays creating multiple possible arguments for variables which can get confusing when referencing them in the code. Both depend on the data being arranged in a specific way but the refactored makes it harder to refactor again if applied to a dataset that is not chronological and grouped
 
