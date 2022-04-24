@@ -19,7 +19,7 @@ The array is then defined by each ticker before activating the sheet for the sel
 ### Method 1 - Using a nested loop 
 In order to assign the correct values, the Tickers array is assigned to a variable and then every ticker in the array is checked against every row in the sheet for the selected year. The relevant data for calculating the Total Volume is present in every row so the loop checks for the current ticker and then adds the daily volume to the total before returning the result for the entire year. 
 
-> `For i = 0 To 11
+    For i = 0 To 11
        ticker = tickers(i)
        totalVolume = 0`
        
@@ -58,9 +58,9 @@ In the refactored code, a Ticker Index is created to assign the correct values t
     tickerIndex = 0
         
     'Create three output arrays
-    Dim tickerVolumes(12) As Long
-    Dim tickerStartingPrices(12) As Single
-    Dim tickerEndingPrices(12) As Single
+    Dim tickerVolumes(11) As Long
+    Dim tickerStartingPrices(11) As Single
+    Dim tickerEndingPrices(11) As Single
     
 A single loop is used to iterate though all the rows in the data. First to cumulatively add up the Total Volume for each ticker without the need for a conditional statment.
 
@@ -96,8 +96,4 @@ The loop then uses conditional statments to check if each row is either the firs
 This refactored method not only simplifies the code, but also decreases the amount of time it takes to run. With an array of only 12 stocks and sheets containing around 3000 rows, this decrease in run time can still be seen significantly. The next section explores the differences in the refactored code and how this decrease in run time is important when analyzing much larger datasets. 
 
 ## Results
-![Originall_VBA_Challenge_2017](https://user-images.githubusercontent.com/99051640/163731165-46e2fe90-c149-46c4-836a-0e72ceb2bb04.png)
-![VBA_Challenge_2017](https://user-images.githubusercontent.com/99051640/163731177-28011c9d-7871-48ca-b7fb-1dab53aebb58.png)
 
-![Original_VBA_Challenge_2018](https://user-images.githubusercontent.com/99051640/163731167-c5737c77-2601-420d-a421-406621ba32e1.png)
-![VBA_Challenge_2018](https://user-images.githubusercontent.com/99051640/163731180-22776bec-c764-4e4c-8edd-39b2208e9992.png)
