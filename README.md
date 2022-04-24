@@ -62,8 +62,13 @@ In the refactored code, a Ticker Index is created to assign the correct values t
     Dim tickerStartingPrices(11) As Single
     Dim tickerEndingPrices(11) As Single
     
-A single loop is used to iterate though all the rows in the data. First to cumulatively add up the Total Volume for each ticker without the need for a conditional statment.
+A single loop is used to iterate though all the rows in the data. First, to cumulatively add up the Total Volume for each ticker without the need for a conditional statment.
 
+    'Create a for loop to initialize the tickerVolumes to zero
+    For i = 0 To 11
+    
+        tickerVolumes(i) = 0
+        
     'Loop over all the rows in the spreadsheet
     For i = 2 To RowCount
     
