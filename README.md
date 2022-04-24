@@ -12,8 +12,21 @@ The original dataset contains spreadsheets for each year (2017,2018) with data f
 
 An initial step is to initialize an array to represpent the 12 stock ticker names. This array is used to assign the data in each row to the correct ticker and return it to the correct column in the analysis sheet. 
 
-> `Dim Tickers(11) As String`
+    `Dim Tickers(11) As String`
 
+    tickers(0) = "AY"
+    tickers(1) = "CSIQ"
+    tickers(2) = "DQ"
+    tickers(3) = "ENPH"
+    tickers(4) = "FSLR"
+    tickers(5) = "HASI"
+    tickers(6) = "JKS"
+    tickers(7) = "RUN"
+    tickers(8) = "SEDG"
+    tickers(9) = "SPWR"
+    tickers(10) = "TERP"
+    tickers(11) = "VSLR"
+    
 The array is then defined by each ticker before activating the sheet for the selected year and looping through the rows. At this point there are two different methods used to loop through the rows of data and extract the data necessary for the analysis. 
 
 ### Method 1 - Using a nested loop 
