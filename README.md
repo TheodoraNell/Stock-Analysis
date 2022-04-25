@@ -1,13 +1,13 @@
 # VBA Stock Analysis
 
-## Overview
+## OVERVIEW
 Performing analysis with VBA on daily stock market data for 2017 and 2018
 
 ### Purpose
-The purpose of this analysis is to compare the overall performance of array of stocks in the green power sector for each year. A refactored code is then compared to the original in regard to function, return time, and application to a larger dataset with more stocks.
+The purpose of this analysis is to compare the performance of array of stocks in the green power industry for each year by looking at the total daily volume and return. It also explores two different scripts for pulling the data and weighs the advantages/disadvantages between the refactored script and the original. 
 
 
-## Method
+## METHOD
 The original dataset contains spreadsheets for each year (2017,2018) with data for the same 12 stock tickers. Each sheet contains a row for almost every day of the year for every stock ticker. Therefore, the goal is to create a VBA macro to loop through all the rows and pull the relevent data into a new sheet ("All Stocks Analysis") showing the total volume and the overall return for each stock, each year.
 
 An initial step is to initialize an array to represpent the 12 stock ticker names. This array is used to assign the data in each row to the correct ticker and return it to the correct column in the analysis sheet. 
@@ -145,26 +145,41 @@ The last step is to output the values to the All Stocks Analysis sheet. In the r
     
 This refactored method not only simplifies the code, but also decreases the amount of time it takes to run. With an array of only 12 stocks and sheets containing around 3000 rows, this decrease in run time can still be seen significantly. The next section explores the differences in the refactored code and how this decrease in run time is important when analyzing much larger datasets. 
 
-## Results
+## RESULTS
 
 ### Stock Performance 2017 vs 2018
-Through this analysis, it can be concluded that most of the 12 stocks perormed much better in 2017 than in 2018, both in terms of Total Volume as well as Return. Moreover, in 2017 most stocks showed a positive return and in 2018 most showed a negative return. This invites a deeper exploration into the performance of the green power industry as a whole during this time and possible factors that could explain this trend. 
+Through this analysis, it can be concluded that most of the 12 stocks perormed significantly better in 2017 than in 2018, both in terms of Total Volume as well as Return. Moreover, in 2017 most stocks showed a positive return and in 2018 most showed a negative return. This invites a deeper exploration into the performance of the green power industry as a whole during this time and possible factors that could explain this trend. 
 
 ![2017_Cropped](https://user-images.githubusercontent.com/99051640/164998740-5756e0c8-bc80-4425-a903-302b79ee9cb5.png)
 ![2018_Cropped](https://user-images.githubusercontent.com/99051640/164998743-4a8fe64a-8e97-42ac-805c-3da3b4e75250.png)
 
-   There are also two stocks that stand out against this trend as having more consistent and/or positive performance. ENPH saw less of a return in 2018 than 2017, however it was still a fairly high return at 81.9%. It also increased in total volume. Other stocks managed to increase in total daily volume in 2018 but still had negative returns. RUN appears to have the strongest performance of all the stocks from 2017 to 2018. There was an increase in Total Daily Volume and a large jump in Return from 5.5% to almost 84%. 
-   The data is limited in that it only accounts for two years and further analsys of data for years after 2018 would be beneficial to substantiate any conclusions regarding which stocks would be good options to purchase. 
+There are also two stocks that stand out against this trend as having more consistent and/or positive performance. **ENPH** saw less of a return in 2018 than 2017, however it was still a fairly high return at 81.9%. It also increased in total volume. Other stocks managed to increase in total daily volume in 2018 but still had negative returns. **RUN** appears to have the strongest performance of all the stocks between 2017 to 2018. There was an increase in Total Daily Volume and a large jump in Return from 5.5% to almost 84%. 
+
+The data is limited in that it only accounts for two years and further analysis of years after 2018 would be beneficial to substantiate conclusions about possible trends.  
 
 ### Execution times of the original vs refactored script
-![2017_Original_Code](https://user-images.githubusercontent.com/99051640/164998377-44efbd7f-3dee-4ba3-a3e9-f97fcf054d7f.png)
-![VBA_Challenge_2017](https://user-images.githubusercontent.com/99051640/164998383-94aa5ae9-22f0-4e35-8627-90713eeb375a.png)
+The refactored code ran significantly faster than the original. Approximately 0.07 seconds vs 0.7 seconds for the 2017 results and a similar margin for 2018. These margins stayed consistent when running the scripts multiple times (only varying by hundreths of a second) 
 
-![2018_Original_Code](https://user-images.githubusercontent.com/99051640/164998379-dac9104f-7468-4da3-97d7-58e134c9d2ed.png)
-![VBA_Challenge_2018](https://user-images.githubusercontent.com/99051640/164998384-445427f4-2298-4b85-a1a3-d6fbd9788a3a.png)
+![2017_Original_Cropped](https://user-images.githubusercontent.com/99051640/165000170-3bfb4ff7-29ff-459a-bccb-1ef09b3721c8.png)
+![2017_Refactored_Cropped](https://user-images.githubusercontent.com/99051640/165000174-ce1752a2-9753-447a-8c1d-ea89d5a675ec.png)
+
+![2018_Original_Cropped](https://user-images.githubusercontent.com/99051640/165000176-b7eb76ae-a4bb-4a11-9a03-4428d9ee6731.png)
+![2018_Refactored_Cropped](https://user-images.githubusercontent.com/99051640/165000177-9f3817e0-6d7d-4a4a-9f4b-44f625b95213.png)
+
+## SUMMARY 
+
+There are advantages and disadvantages to refactoring code both in general and in this analysis. As demonstrated [above](https://github.com/TheodoraNell/Stock-Analysis/blob/main/README.md#results), a clear advantage is decreasing the run time of the script. When working with a smaller dataset the time differences can be slight but when running it on large datasets (the entire stock market for example) they can manke an exponential difference. Another advantage is creating more concise code with fewer lines that may be easier to interpret and edit by multiple parties. In this analysis the creation of additional arrays replaces the need for a nested loop and presents a more straightforward order of operations. 
+
+Disadvantages include the additional time needed for the process of refactoring and posibility of hitting dead ends or creating errors. Also, higher levels of complexity can be introduced when simplifying the code which can also increase the potential for errors and the time it takes to solve them. In this analyis, the added complexity of multiple variable arrays in the refactored script creates the possiblity of confusion and error when referenceing the correct arguments for the variables.
 
 
-disadvantages in general: time consuming, create higher levels of complexity even when reducing the number of lines (introducing variables that are arrays, dictionaries, etc. May not be as easy to follow or adapt for other use. 
 
-specifically: Variables are arrays creating multiple possible arguments for variables which can get confusing when referencing them in the code. Both depend on the data being arranged in a specific way but the refactored makes it harder to refactor again if applied to a dataset that is not chronological and grouped
+
+
+
+
+
+
+
+
 
