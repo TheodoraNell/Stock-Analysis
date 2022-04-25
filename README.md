@@ -1,10 +1,10 @@
 # VBA Stock Analysis
 
 ## OVERVIEW
-Performing analysis with VBA on daily stock market data for 2017 and 2018
+Performing VBA analysis on daily stock market data for 2017 and 2018 and exploring the refactoring process of the script used. 
 
 ### Purpose
-The purpose of this analysis is to compare the performance of array of stocks in the green power industry for each year by looking at the total daily volume and return. It also explores two different scripts for pulling the data and weighs the advantages/disadvantages between the refactored script and the original. 
+The purpose of this analysis is to compare the performance of array of stocks in the green power industry for each year by looking at the total daily volume and return. This analysis also explores two different scripts for outputing the data and weighs the advantages/disadvantages between the refactored script and the original. 
 
 
 ## METHOD
@@ -29,7 +29,7 @@ An initial step is to initialize an array to represpent the 12 stock ticker name
     
 The array is then defined by each ticker before activating the sheet for the selected year and looping through the rows. At this point there are two different methods used to loop through the rows of data and extract the data necessary for the analysis. 
 
-### Method 1 - Using a nested loop 
+### Original Method - Using a nested loop 
 In order to assign the correct values, the Tickers array is assigned to a variable and then every ticker in the array is checked against every row in the sheet for the selected year. The relevant data for calculating the Total Volume is present in every row so the loop checks for the current ticker and then adds the daily volume to the total before returning the result for the entire year. 
 
     For i = 0 To 11
@@ -76,7 +76,7 @@ Lastly, the data is output for the current ticker to the new spreadsheet. This i
     Next i
 
 
-### Method 2 - Using multiple arrays
+### Refactored Method - Using multiple arrays
 
 In the refactored code, a Ticker Index is created to assign the correct values to each ticker rather than looping through all the rows in the data for every ticker in the Tickers array. In this method the variables for the output values are declared as arrays corresponding to the ticker index.
 
@@ -142,8 +142,6 @@ The last step is to output the values to the All Stocks Analysis sheet. In the r
         
         'Output the Return
         Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
-    
-This refactored method not only simplifies the code, but also decreases the amount of time it takes to run. With an array of only 12 stocks and sheets containing around 3000 rows, this decrease in run time can still be seen significantly. The next section explores the differences in the refactored code and how this decrease in run time is important when analyzing much larger datasets. 
 
 ## RESULTS
 
@@ -168,9 +166,9 @@ The refactored code ran significantly faster than the original. Approximately 0.
 
 ## SUMMARY 
 
-There are advantages and disadvantages to refactoring code both in general and in this analysis. As demonstrated [above](https://github.com/TheodoraNell/Stock-Analysis/blob/main/README.md#results), a clear advantage is decreasing the run time of the script. When working with a smaller dataset the time differences can be slight but when running it on large datasets (the entire stock market for example) they can manke an exponential difference. Another advantage is creating more concise code with fewer lines that may be easier to interpret and edit by multiple parties. In this analysis the creation of additional arrays replaces the need for a nested loop and presents a more straightforward order of operations. 
+There are advantages and disadvantages to refactoring code both in general and in this analysis. As demonstrated [above](https://github.com/TheodoraNell/Stock-Analysis/blob/main/README.md#results), a clear advantage is decreasing the run time of the script. When working with a smaller dataset (like the one in this analysis) the time differences can be slight but when running it on much larger datasets (the entire stock market for example) they can manke an exponential difference. Another advantage is creating more concise code with fewer lines that may be easier to interpret and edit by multiple parties, as well as for future refactoring. In this analysis the creation of additional arrays replaces the need for a nested loop and presents a more straightforward order of operations. 
 
-Disadvantages include the additional time needed for the process of refactoring and posibility of hitting dead ends or creating errors. Also, higher levels of complexity can be introduced when simplifying the code which can also increase the potential for errors and the time it takes to solve them. In this analyis, the added complexity of multiple variable arrays in the refactored script creates the possiblity of confusion and error when referenceing the correct arguments for the variables.
+Disadvantages include the additional time needed for the process of refactoring and posibility of hitting dead ends or creating errors. Also, higher levels of complexity can be introduced when simplifying the code which can also increase the potential for errors and the time it takes to solve them. In this analyis, the added complexity of multiple variable arrays in the refactored script creates the possiblity of confusion and error when referenceing the correct arguments for the variables. Overall however, refactoring seems to have stronger advantages than disadvantages in most cases. 
 
 
 
