@@ -12,7 +12,7 @@ The original dataset contains spreadsheets for each year (2017, 2018) with data 
 
 An initial step is to initialize an array to represpent the 12 stock ticker names. This array is used to assign the data in each row to the correct ticker and return it to the correct column in the analysis sheet. 
 
-    `Dim Tickers(11) As String`
+    Dim Tickers(11) As String
 
     tickers(0) = "AY"
     tickers(1) = "CSIQ"
